@@ -151,6 +151,14 @@ public class TimSortLow<T> {
 
     }
 
+    /**
+     * 查询当前从lo开始最大的递增长度或者严格递减长度，如果是严格递减还会将该范围进行反转
+     * @param a
+     * @param lo inclusive
+     * @param hi exclusive
+     * @param c
+     * @return 连续有序长度
+     */
     private static <T> int countRunAndMakeAscending(T[] a, int lo, int hi, Comparator<? super T> c) {
         int runHi = lo + 1;
         //just one element
@@ -158,17 +166,24 @@ public class TimSortLow<T> {
             return 1;
         }
 
-        if (c.compare(a[lo], a[runHi++]) > 0) {
+        if (c.compare(a[lo], a[runHi++]) > 0) { // 如果是递减的形式
             while (runHi < hi && c.compare(a[runHi - 1], a[runHi]) > 0)
                 runHi++;
             reverseRange(a, lo, runHi);
-        } else {
+        } else { // 递增的形式
             while (runHi < hi && c.compare(a[runHi - 1], a[runHi]) <= 0)
                 runHi++;
         }
         return runHi - lo;
     }
 
+    /**
+     * 数组指定范围反转
+     * @param a
+     * @param lo
+     * @param hi
+     * @param <T>
+     */
     private static <T> void reverseRange(T[] a, int lo, int hi) {
         hi--;
         while (lo < hi) {
@@ -178,6 +193,14 @@ public class TimSortLow<T> {
         }
     }
 
+    /**
+     * 根据MIN_MERGE 计算run的最小长度，计算方法是不停的让n进行右移，直到数值小于MIN_MERGE,其实也就是
+     * 根据MIN_MERGE，求出n最高5（从第一个1开始）个bit位代表的数值，奇数的话在加1，据说是为了minRun的取值
+     * 要尽可能的使归并数量处于略微小于2的某次方，如果是略大2的某次方的话最后归并的时候就会出现一个特长的数组
+     * 和一个特别短的数组进行合并的情况。
+     * @param n
+     * @return
+     */
     private static int minRunLength(int n) {
         int r = 0;
         //MIN_MERGE是32 0010 0000 该方法可以计算n的最高5位的数值是多少

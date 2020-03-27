@@ -1,4 +1,6 @@
-package com.silence.fiveminutes.tree;
+package com.silence.fiveminutes.tree.search;
+
+import com.silence.fiveminutes.tree.Node;
 
 import java.util.LinkedList;
 
