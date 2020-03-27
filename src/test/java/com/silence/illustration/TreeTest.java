@@ -1,8 +1,8 @@
 package com.silence.illustration;
 
 import com.silence.fiveminutes.tree.Node;
-import com.silence.fiveminutes.tree.search.TreeCreator;
-import com.silence.fiveminutes.tree.search.TreeTraversal;
+import com.silence.fiveminutes.tree.normal.TreeCreator;
+import com.silence.fiveminutes.tree.normal.TreeTraversal;
 import org.junit.Test;
 
 /**

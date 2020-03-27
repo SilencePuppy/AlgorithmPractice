@@ -1,4 +1,4 @@
-package com.silence.fiveminutes.tree.search;
+package com.silence.fiveminutes.tree.normal;
 
 import com.silence.fiveminutes.tree.Node;
 import lombok.AllArgsConstructor;
