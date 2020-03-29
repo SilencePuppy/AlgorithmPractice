@@ -1,6 +1,6 @@
 package com.silence.fiveminutes;
 
-import com.silence.fiveminutes.tree.Node;
+import com.silence.fiveminutes.tree.NodeUtil;
 import com.silence.fiveminutes.tree.search.SearchTree;
 import org.junit.Test;
 
@@ -18,14 +18,13 @@ public class TreeTest {
     }
 
     public static void main(String[] args) {
-        int deep = 5;
-        SearchTree tree = SearchTree.createTree(deep, System.currentTimeMillis());
-        Node.printTreeBeautiful(tree.getRoot(), deep);
-        tree.midOrderIterator();
-        System.out.println();
+        SearchTree tree = SearchTree.createTree(10);
+        int treeLayer = NodeUtil.getTreeLayer(tree.getRoot());
+        NodeUtil.printBeautifulTree(tree.getRoot(), treeLayer);
+
         Scanner scanner = new Scanner(System.in);
-        Integer target = scanner.nextInt();
-        tree.delete(target);
-        Node.printTreeBeautiful(tree.getRoot(),deep);
+        int targetData = scanner.nextInt();
+        tree.delete(targetData);
+        NodeUtil.printBeautifulTree(tree.getRoot(),treeLayer);
     }
 }

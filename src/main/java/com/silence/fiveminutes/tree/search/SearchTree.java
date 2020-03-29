@@ -1,9 +1,10 @@
 package com.silence.fiveminutes.tree.search;
 
 import com.silence.fiveminutes.tree.Node;
-import com.silence.illustration.Stack;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -14,21 +15,7 @@ import java.util.Random;
 public class SearchTree {
     Node<Integer> root;
 
-    public Node<Integer> find(Integer data) {
-        Node<Integer> p = root;
-        while (p != null) {
-            if (data > p.getData()) {
-                p = p.getRight();
-            } else if (data < p.getData()) {
-                p = p.getLeft();
-            } else {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public void insert(Integer data) {
+    public void insert(int data) {
         if (root == null) {
             root = new Node<>(data);
             return;
@@ -36,92 +23,88 @@ public class SearchTree {
 
         Node<Integer> p = root;
         while (p != null) {
-            if (data > p.getData()) {
+            if (data >= p.getData()) {
                 if (p.getRight() == null) {
-                    p.setRight(new Node<>(data));
+                    p.setRight(new Node<>(data, p));
                     return;
+                } else {
+                    p = p.getRight();
                 }
-                p = p.getRight();
-            } else if (data < p.getData()) {
+            } else {
                 if (p.getLeft() == null) {
-                    p.setLeft(new Node<>(data));
+                    p.setLeft(new Node<>(data, p));
                     return;
+                } else {
+                    p = p.getLeft();
                 }
-                p = p.getLeft();
-            } else {
-                return;
             }
         }
     }
 
-    public void delete(Integer data) {
-        Node<Integer> pp = null, p = root;
-        while (p != null) {
-            if (p.getData().equals(data)) {
-                break;
-            }
-            pp = p;
-            if (data < p.getData()) {
-                p = p.getLeft();
-            } else {
-                p = p.getRight();
-            }
-        }
-        if (p == null) {
-            return;
-        }
-        if (p.getRight() != null && p.getLeft() != null) {
-            Node<Integer> childPP = p;
-            Node<Integer> childp = p.getRight();
-            while (childp.getLeft() != null) {
-                childPP = childp;
-                childp = childp.getLeft();
-            }
-            p.setData(childp.getData());
-            pp = childPP;
-            p = childp;
-        }
-
-        // 删除的是根节点
-        if (pp == null) {
-            root =null;
-            return;
-        }
-
-        Node<Integer> target = p.getRight() == null ? p.getLeft() : p.getRight();
-        if (pp.getLeft() == p) {
-            pp.setLeft(target);
-        } else {
-            pp.setRight(target);
-        }
-    }
-
-    public void midOrderIterator(){
-        if (root == null) {
-            return;
-        }
-        Stack<Node<Integer>> stack = new Stack<>();
-        Node<Integer> p = root;
-        while (p != null || stack.size() > 0) {
-            if (p != null) {
-                stack.push(p);
-                p = p.getLeft();
-            } else {
-                p = stack.pop();
-                System.out.print(p.getData()+" ");
-                p = p.getRight();
-            }
-        }
-    }
-
-    public static SearchTree createTree(Integer dataNum, long seed) {
-        Random random = new Random(seed);
-        int i = 0;
+    public static SearchTree createTree(int dataNum) {
         SearchTree tree = new SearchTree();
-        while (i++ < dataNum) {
-            int d = random.nextInt(100);
-            tree.insert(d);
+        Random random = new Random(System.currentTimeMillis());
+        while (dataNum-- > 0) {
+            int i = random.nextInt(100);
+            tree.insert(i);
         }
         return tree;
     }
+
+    public List<Node<Integer>> find(int data) {
+        List<Node<Integer>> retList = new ArrayList<>();
+        if (root == null) {
+            return retList;
+        }
+        Node<Integer> p = root;
+        while (p != null) {
+            if (data == p.getData()) {
+                retList.add(p);
+                p = p.getRight();
+            } else if (data > p.getData()) {
+                p = p.getRight();
+            } else {
+                p = p.getLeft();
+            }
+        }
+        return retList;
+    }
+
+    public void delete(int data) {
+        List<Node<Integer>> target = find(data);
+        for (int i = target.size() - 1; i >= 0; i--) {
+            delete(target.get(i));
+        }
+    }
+
+    private void delete(Node<Integer> target) {
+        Node<Integer> pp = target.getParent();
+        Node<Integer> p = target;
+        if (p.getLeft() != null && p.getRight() != null) {
+            Node<Integer> childPP = p;
+            Node<Integer> childP = p.getRight();
+            while (childP.getLeft() != null) {
+                childPP = childP;
+                childP = childP.getLeft();
+            }
+            p.setData(childP.getData());
+            pp = childPP;
+            p = childP;
+        }
+        Node<Integer> child = p.getRight() == null ? p.getLeft() : p.getRight();
+        if (p == root) {
+            root = child;
+            return;
+        }
+        if (pp.getLeft() == p) {
+            pp.setLeft(child);
+        } else {
+            pp.setRight(child);
+        }
+        // 释放
+        p.setParent(null);
+        p.setLeft(null);
+        p.setRight(null);
+    }
+
 }
