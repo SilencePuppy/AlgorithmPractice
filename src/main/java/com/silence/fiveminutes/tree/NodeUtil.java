@@ -95,7 +95,9 @@ public class NodeUtil {
                 curLayer = curNode.getCurLayer();
                 // 每一层都是其下面一层占位数量的2倍
                 blank = (int) (Math.pow(2, maxLayer - curLayer) * baseDataWidth);
-                System.out.println();
+                if (curLayer != 1) {
+                    System.out.println();
+                }
             }
             if (curNode.getNode() == null) {
                 System.out.printf("%" + blank + "d", -1);
