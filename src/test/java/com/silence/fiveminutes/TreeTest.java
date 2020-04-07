@@ -12,16 +12,13 @@ import java.util.Random;
 public class TreeTest {
 
     public static void main(String[] args) {
-        AvlTree<Integer> avlTree =new AvlTree<>();
-        Random random =new Random(System.currentTimeMillis());
+        AvlTree<Integer> avlTree = new AvlTree<>();
+        Random random = new Random(System.currentTimeMillis());
         int i=30;
         while (i-- > 0) {
-            int data = random.nextInt(100);
-            avlTree.insert(data);
+            avlTree.insert(random.nextInt(100));
         }
-
         int treeLayer = NodeUtil.getTreeLayer(avlTree.getRoot());
-        NodeUtil.printBeautifulTree(avlTree.getRoot(),treeLayer);
-        System.out.println(avlTree.getRoot().getHeight());
+        NodeUtil.printBeautifulTree(avlTree.getRoot(), treeLayer);
     }
 }
