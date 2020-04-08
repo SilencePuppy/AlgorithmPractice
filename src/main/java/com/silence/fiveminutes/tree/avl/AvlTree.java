@@ -2,6 +2,11 @@ package com.silence.fiveminutes.tree.avl;
 
 import com.silence.fiveminutes.tree.Node;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * AVL树
  *
@@ -49,12 +54,85 @@ public class AvlTree<T extends Comparable<T>> {
             root = target;
         }
         // 重新计算所有祖先节点高度
-        resetParentHeight(target,null);
+        resetParentHeight(target, null);
 
+        // 查询最小不平衡子树
         Node<T> minUnBalancedTree = getMinUnBalancedTree(target);
         if (minUnBalancedTree != null) {
             adjustUnbalancedTree(minUnBalancedTree);
         }
+    }
+
+    public List<Node<T>> find(T data) {
+        List<Node<T>> retList = new ArrayList<>();
+        Node<T> node = root;
+
+        LinkedList<Node<T>> queue = new LinkedList<>();
+        while (node != null || queue.size() != 0) {
+            if (node != null) {
+                if (node.getData().compareTo(data) < 0) {
+                    node = node.getRight();
+                } else if (node.getData().compareTo(data) > 0) {
+                    node = node.getLeft();
+                } else {
+                    // if equals then the left and right child need to be ready to check
+                    retList.add(node);
+                    queue.addLast(node.getLeft());
+                    queue.addLast(node.getRight());
+                    node = null;
+                }
+            } else {
+                node = queue.poll();
+            }
+        }
+        return retList;
+    }
+
+    public List<Node<T>> delete(T data) {
+        List<Node<T>> deleteTargets = find(data);
+        deleteTargets.sort(Comparator.comparing(Node::getHeight));
+        for (Node<T> deleteTarget : deleteTargets) {
+            deleteNode(deleteTarget);
+        }
+        return deleteTargets;
+    }
+
+    private void deleteNode(Node<T> node) {
+        if (node == null) {
+            return;
+        }
+        if (node.getRight() != null && node.getLeft() != null) {
+            Node<T> child = node.getRight();
+            while (child.getLeft() != null) {
+                child = child.getLeft();
+            }
+            node.setData(child.getData());
+            node = child;
+        }
+
+        Node<T> s = node.getLeft() == null ? node.getRight() : node.getLeft();
+        if (s != null) {
+            s.setParent(node.getParent());
+        }
+        if (node.getParent() == null) {
+            root = s;
+        } else if (node.getParent().getLeft() == node) {
+            node.getParent().setLeft(s);
+        } else {
+            node.getParent().setRight(s);
+        }
+
+        // 重新计算所有祖先节点高度
+        resetParentHeight(node.getParent(), null);
+        // 查询最小不平衡子树
+        Node<T> minUnBalancedTree = getMinUnBalancedTree(node.getParent());
+        if (minUnBalancedTree != null) {
+            adjustUnbalancedTree(minUnBalancedTree);
+        }
+
+        node.setParent(null);
+        node.setLeft(null);
+        node.setRight(null);
     }
 
     /**
