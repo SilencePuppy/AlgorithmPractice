@@ -1,10 +1,6 @@
 package com.silence.fiveminutes;
 
-import com.silence.fiveminutes.tree.NodeUtil;
-import com.silence.fiveminutes.tree.avl.AvlTree;
-
-import java.util.Random;
-import java.util.Scanner;
+import com.silence.fiveminutes.tree.avl.rb.RBTree;
 
 /**
  * @author 李晓冰
@@ -13,19 +9,15 @@ import java.util.Scanner;
 public class TreeTest {
 
     public static void main(String[] args) {
-        AvlTree<Integer> avlTree = new AvlTree<>();
-        Random random = new Random(10);
-        int i=30;
-        while (i-- > 0) {
-            avlTree.insert(random.nextInt(100));
-        }
-        int treeLayer = NodeUtil.getTreeLayer(avlTree.getRoot());
-        NodeUtil.printBeautifulTree(avlTree.getRoot(), treeLayer);
-
-        Scanner scanner = new Scanner(System.in);
-        int data = scanner.nextInt();
-        avlTree.delete(data);
-        treeLayer = NodeUtil.getTreeLayer(avlTree.getRoot());
-        NodeUtil.printBeautifulTree(avlTree.getRoot(),treeLayer);
+        RBTree<Integer> bst2 = new RBTree<>();
+        bst2.insert(50);
+        bst2.insert(30);
+        bst2.insert(70);
+        bst2.insert(60);
+        bst2.insert(80);
+        bst2.insert(90);
+        bst2.delete(30);
+        bst2.printTree(bst2.getRoot());
+        System.out.println();
     }
 }
