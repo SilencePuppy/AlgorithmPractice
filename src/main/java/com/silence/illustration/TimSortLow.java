@@ -379,7 +379,7 @@ public class TimSortLow<T> {
     }
 
     /**
-     * Locates the position at which to insert the specified key into the
+     * Locates the position at which to insertKey the specified key into the
      * specified sorted range; if the range contains an element equal to key,
      * returns the index of the leftmost equal element.
      *
