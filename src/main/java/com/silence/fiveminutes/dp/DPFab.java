@@ -19,11 +19,11 @@ public class DPFab {
             return cache.get(i);
         }
         int val = Fab(i - 1) + Fab(i - 2);
-        cache.put(i,val);
+        cache.put(i, val);
         return val;
     }
 
-    public int FabIterate(int i){
+    public int FabIterate(int i) {
         if (i == 1 || i == 2) {
             return 1;
         }
@@ -31,7 +31,7 @@ public class DPFab {
         int prev2 = 1;
         int result = 0;
         for (int j = 3; j <= i; j++) {
-            result = prev1+prev2;
+            result = prev1 + prev2;
             prev1 = prev2;
             prev2 = result;
         }

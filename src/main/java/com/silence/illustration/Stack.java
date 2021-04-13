@@ -10,7 +10,6 @@ import java.util.Scanner;
  * 1.模拟浏览器前进后退
  * 2.模拟实现字符串的+-/*
  * 3.判断括号匹配
- *
  * @author 李晓冰
  * @date 2020年02月20日
  */
@@ -143,7 +142,7 @@ class Calculator {
         }
     }
 
-    public Integer executeVal(){
+    public Integer executeVal() {
         if (stack2.size() == 0) {
             throw new RuntimeException("wrong");
         }
@@ -155,6 +154,7 @@ class Calculator {
         }
         return stack1.pop().data;
     }
+
     private Integer executeTopOperator() {
         OperateNode operateNode = stack2.pop();
         NumberNode p1 = stack1.pop();

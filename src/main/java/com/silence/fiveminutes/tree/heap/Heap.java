@@ -2,7 +2,6 @@ package com.silence.fiveminutes.tree.heap;
 
 /**
  * 堆
- *
  * @author 李晓冰
  * @date 2020年04月20日
  */
@@ -42,9 +41,8 @@ public class Heap<T extends Comparable<T>> {
 
     /**
      * 对传入的数组进行堆排序
-     *
      * @param array 待处理数组 数据下标从1开始
-     * @param count     有效数据长度
+     * @param count 有效数据长度
      */
     public void sort(Object[] array, int count) {
         buildHeap(array, count);

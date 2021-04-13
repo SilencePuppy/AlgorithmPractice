@@ -39,7 +39,7 @@ public class DC {
         if (array[middle] == target) {
             return middle;
         } else if (array[middle] > target) {
-            return binarySearch(array,left,middle-1,target);
+            return binarySearch(array, left, middle - 1, target);
         } else {
             return binarySearch(array, middle + 1, right, target);
         }
@@ -48,10 +48,10 @@ public class DC {
 
     public static void main(String[] args) {
         DC dc = new DC();
-        Integer[] arr = new Integer[]{2,3,3,4,4, 5};
+        Integer[] arr = new Integer[]{2, 3, 3, 4, 4, 5};
         System.out.println(dc.count(arr, 0));
         System.out.println(dc.sum(arr, 0));
         System.out.println(dc.max(arr, 0));
-        System.out.println(dc.binarySearch(arr,0,arr.length-1,4));
+        System.out.println(dc.binarySearch(arr, 0, arr.length - 1, 4));
     }
 }

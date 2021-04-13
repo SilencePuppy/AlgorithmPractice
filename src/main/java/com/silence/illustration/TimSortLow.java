@@ -14,10 +14,10 @@ import java.util.Comparator;
  * 2） runLen[i-1]>run[i]
  * 个人认为第二个条件保证了整个栈内每个run长是下大上小，条件1则是尽量使从上到下进行归并的时候两个子数组的长度
  * 尽量一致。如果压栈的时候发现数据不满足条件就将其进行归并。
- *
+ * <p>
  * 在进行归并的时候也使用了很多技巧，首先是找到B数组第一位在A数组中应该在的位置，然后找到A数组最后一位在B中应该在的
  * 位置，这样只需要归并AB数组中间相邻的一部分数据，然后归并时申请的额外空间是取AB处理后较小的一个的长度。
- *
+ * <p>
  * java 作者使用数组时喜欢用lo表示数组开始为hi表示最高索引位置加1,也就是对应的长度。这样做在进行代码书写的时候能够
  * 避免索引移动或者求索引相对位置时进行不必要的加一减一操作
  * @author 李晓冰
@@ -104,11 +104,11 @@ public class TimSortLow<T> {
      * 二分插入排序，认为start前面的数都是已经排好顺序的，所以从start开始进行排序，先用二分查找找到
      * start位置的元素在a[lo]-a[start-1]里面的正确位置。为了保证是稳定排序，二分找的是小于等于a[start]的
      * 最后一个数字的后面一个位置（也就是第一个大于a[start]的元素位置或者是数组的hi位置）
-     * @param a 数组
-     * @param lo 要排序的第一个数字的下标
+     * @param a     数组
+     * @param lo    要排序的第一个数字的下标
      * @param start 第一个未排序的数字的下标
-     * @param hi 数组要排序最后一个数字下标的下一位
-     * @param c 比较器
+     * @param hi    数组要排序最后一个数字下标的下一位
+     * @param c     比较器
      */
     private static <T> void binarySort(T[] a, int lo, int start, int hi, Comparator<? super T> c) {
         // 边界处理，默认第一个数字是已经排好序的数字
@@ -218,7 +218,7 @@ public class TimSortLow<T> {
         stackSize++;
     }
 
-    private void mergeForceCollapse(){
+    private void mergeForceCollapse() {
         while (stackSize > 1) {
             int n = stackSize - 2;
             if (n > 0 && runLen[n - 1] < runLen[n + 1])
@@ -382,7 +382,6 @@ public class TimSortLow<T> {
      * Locates the position at which to insertKey the specified key into the
      * specified sorted range; if the range contains an element equal to key,
      * returns the index of the leftmost equal element.
-     *
      * @param key
      * @param a
      * @param base
@@ -394,11 +393,11 @@ public class TimSortLow<T> {
      */
     public int gallopRight(T key, T[] a, int base, int len, int hint, Comparator<? super T> c) {
         int left, right;
-        if (c.compare(a[base+hint], key) > 0) {
-            right = base+hint;
+        if (c.compare(a[base + hint], key) > 0) {
+            right = base + hint;
             left = base;
         } else {
-            left = base+hint + 1;
+            left = base + hint + 1;
             right = base + len;
         }
 
@@ -416,11 +415,11 @@ public class TimSortLow<T> {
 
     public int gallopLeft(T key, T[] a, int base, int len, int hint, Comparator<? super T> c) {
         int left, right;
-        if (c.compare(a[base+hint], key) < 0) {
-            left = base+hint;
+        if (c.compare(a[base + hint], key) < 0) {
+            left = base + hint;
             right = base + len;
         } else {
-            right = base+hint;
+            right = base + hint;
             left = base;
         }
 

@@ -6,7 +6,6 @@ import java.util.LinkedList;
 
 /**
  * 二叉树遍历代码
- *
  * @author 李晓冰
  * @date 2020年03月15日
  */
@@ -55,7 +54,6 @@ public class TreeTraversal {
 
     /**
      * 中序 递归
-     *
      * @param node
      * @param <T>
      */
@@ -92,7 +90,6 @@ public class TreeTraversal {
 
     /**
      * 后序 递归
-     *
      * @param node
      * @param <T>
      */

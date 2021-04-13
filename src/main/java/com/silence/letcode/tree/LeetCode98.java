@@ -10,7 +10,6 @@ import java.util.LinkedList;
  * The left subtree of a node contains only nodes with keys less than the node's key.
  * The right subtree of a node contains only nodes with keys greater than the node's key.
  * Both the left and right subtrees must also be binary search trees.
- *
  * @author 李晓冰
  * @date 2020年03月29日
  */
@@ -37,7 +36,6 @@ public class LeetCode98 {
 
     /**
      * 递归实现，不仅要判断当前节点的左节点小于自己还要保证左子树都小于自己
-     *
      * @param node   当前判断的节点
      * @param minVal 下边界
      * @param maxVal 上边界
@@ -62,6 +60,6 @@ public class LeetCode98 {
         LeetCode98 leetCode98 = new LeetCode98();
         boolean validBST = leetCode98.isValidBST1(treeNode);
         System.out.println(validBST);
-        leetCode98.isValidBST2(treeNode,null,null);
+        leetCode98.isValidBST2(treeNode, null, null);
     }
 }

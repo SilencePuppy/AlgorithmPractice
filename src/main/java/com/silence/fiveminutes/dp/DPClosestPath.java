@@ -36,8 +36,8 @@ public class DPClosestPath {
         return Math.min(leftPath, rightPath) + trangle[i][j];
     }
 
-    public int closePathDP(){
-        int initLength = trangle[trangle.length-1].length;
+    public int closePathDP() {
+        int initLength = trangle[trangle.length - 1].length;
         int[] dp = new int[initLength];
         for (int i = 0; i < initLength; i++) {
             dp[i] = trangle[trangle.length - 1][i];

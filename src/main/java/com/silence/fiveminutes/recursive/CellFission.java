@@ -22,7 +22,7 @@ public class CellFission {
     private HashMap<Integer, Integer> cMemo = new HashMap<>();
 
     public int f(int n) {
-        return fa(n)+fb(n)+fc(n);
+        return fa(n) + fb(n) + fc(n);
     }
 
     private int fa(int n) {
@@ -30,11 +30,11 @@ public class CellFission {
             return 1;
         }
 
-        if (aMemo.get(n)!=null){
+        if (aMemo.get(n) != null) {
             return aMemo.get(n);
         }
-        int amount = fa(n-1)+fb(n-1)+fc(n-1);
-        aMemo.put(n,amount);
+        int amount = fa(n - 1) + fb(n - 1) + fc(n - 1);
+        aMemo.put(n, amount);
         return amount;
     }
 
@@ -42,10 +42,10 @@ public class CellFission {
         if (n == 1) {
             return 0;
         }
-        if (bMemo.get(n)!=null){
+        if (bMemo.get(n) != null) {
             return bMemo.get(n);
         }
-        int amount = fa(n-1);
+        int amount = fa(n - 1);
         bMemo.put(n, amount);
         return amount;
     }
@@ -55,11 +55,11 @@ public class CellFission {
             return 0;
         }
 
-        if (cMemo.get(n)!=null){
+        if (cMemo.get(n) != null) {
             return cMemo.get(n);
         }
 
-        int amount = fb(n-1);
+        int amount = fb(n - 1);
         cMemo.put(n, amount);
         return amount;
     }

@@ -17,7 +17,6 @@ public class Sort {
      * 思路2：基于桶排序进行操作。
      * 变换：如果我里面还有数字和符合，要求先按照小写、大写、数字、符号进行排列，然后要求其内部按照ascii排序。
      * 思路：桶排序，每个桶要求内部有序
-     *
      * @param arr
      */
     public void sortCharArr(char[] arr) {
@@ -69,7 +68,6 @@ public class Sort {
     /**
      * 计数排序，基于桶排序的一种。适合小范围数据排序。时间复杂度O(n+k) k是数据的范围
      * 最后根据每一个桶内数字个数进行找位置的时候要从后往前找，否则就不是稳定排序了。
-     *
      * @param arr
      */
     public void countSort(int[] arr) {
@@ -104,7 +102,6 @@ public class Sort {
 
     /**
      * 原地排序，非稳定排序，
-     *
      * @param arr
      */
     public void selectSort(int[] arr) {
@@ -143,7 +140,6 @@ public class Sort {
 
     /**
      * 插入排序比冒泡的优势就是，插入每次移动数据和冒泡是交互数据，多了两次操作
-     *
      * @param arr
      */
     public void insertSort(int[] arr) {
@@ -164,7 +160,6 @@ public class Sort {
 
     /**
      * 原地，非稳定，平均复杂度是n*logn，最坏情况是n^2
-     *
      * @param arr
      */
     public void quickSort(int[] arr) {
@@ -205,7 +200,6 @@ public class Sort {
     /**
      * 非原地排序，空间复杂度n,时间复杂度是n*logn
      * T(n) = 2T(n/2)+n
-     *
      * @param arr
      */
     public void mergeSort(int[] arr) {

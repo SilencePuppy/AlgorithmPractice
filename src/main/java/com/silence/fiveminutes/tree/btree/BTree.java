@@ -29,7 +29,7 @@ public class BTree<K extends Comparable<K>, V> {
         BNode<K, V> node = root;
         while (node != null) {
             int index = node.binarySearch(k);
-            if (index<node.getNKey()&&node.getKVNodeByIndex(index).getK().compareTo(k) == 0) {
+            if (index < node.getNKey() && node.getKVNodeByIndex(index).getK().compareTo(k) == 0) {
                 return node;
             }
             if (node.isLeaf()) {
@@ -80,7 +80,7 @@ public class BTree<K extends Comparable<K>, V> {
         // 待删除节点转移为后继节点
         if (!node.isLeaf()) {
             BNode<K, V> successor = node.getSuccessor(node, index + 1);
-            node.setKVNodeByIndex(index,successor.getKVNodeByIndex(0));
+            node.setKVNodeByIndex(index, successor.getKVNodeByIndex(0));
             node = successor;
             index = 0;
         }
@@ -91,7 +91,7 @@ public class BTree<K extends Comparable<K>, V> {
         return retV;
     }
 
-    private void fixDelete(BNode<K,V> node){
+    private void fixDelete(BNode<K, V> node) {
         if (node == root) {
             return;
         }
@@ -99,13 +99,13 @@ public class BTree<K extends Comparable<K>, V> {
             int inParentIndex = node.findInParentIndex();
             BNode<K, V> preSibling = node.getPreSibling(inParentIndex);
             if (preSibling != null && preSibling.isOverMin()) {
-                node.borrowFromPreSibling(inParentIndex,preSibling);
+                node.borrowFromPreSibling(inParentIndex, preSibling);
                 break;
             }
 
             BNode<K, V> succeSibling = node.getSucceSibling(inParentIndex);
             if (succeSibling != null && succeSibling.isOverMin()) {
-                node.borrowFromSucceSibling(inParentIndex,succeSibling);
+                node.borrowFromSucceSibling(inParentIndex, succeSibling);
                 break;
             }
 
@@ -115,7 +115,7 @@ public class BTree<K extends Comparable<K>, V> {
                 node = pre;
             } else {
                 BNode<K, V> succe = node.getSucceSibling(inParentIndex);
-                node.mergeWithSuccesSibling(inParentIndex,succe);
+                node.mergeWithSuccesSibling(inParentIndex, succe);
             }
             if (node.getParent() == null) {
                 break;

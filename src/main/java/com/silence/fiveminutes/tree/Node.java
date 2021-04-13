@@ -40,8 +40,8 @@ public class Node<T extends Comparable<T>> {
     @Override
     @SuppressWarnings("all")
     public String toString() {
-        StringBuilder sb =new StringBuilder();
-        sb.append("Node{ data=" + data );
+        StringBuilder sb = new StringBuilder();
+        sb.append("Node{ data=" + data);
         sb.append(", height=" + height);
         sb.append(", parent=");
         if (parent == null) {
@@ -49,7 +49,7 @@ public class Node<T extends Comparable<T>> {
         } else {
             sb.append(parent.getData());
         }
-        sb.append( ", left=");
+        sb.append(", left=");
         if (left == null) {
             sb.append("null");
         } else {

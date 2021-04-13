@@ -75,7 +75,7 @@ public class Dijkstra {
     }
 
 
-    public void calculate(){
+    public void calculate() {
         String minNode = findLowest();
         while (minNode != null) {
             Integer baseCost = cost.get(minNode);
@@ -92,7 +92,7 @@ public class Dijkstra {
         }
     }
 
-    public void printResult(){
+    public void printResult() {
         System.out.println("min cost:" + cost.get("piano"));
         Stack<String> pathStack = new Stack<>();
         String target = "piano";
@@ -103,7 +103,7 @@ public class Dijkstra {
         StringBuilder sb = new StringBuilder();
         while (pathStack.size() != 0) {
             sb.append(pathStack.pop())
-            .append(",");
+                    .append(",");
         }
         System.out.println(sb.toString());
     }

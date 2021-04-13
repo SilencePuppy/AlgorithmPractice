@@ -11,57 +11,71 @@ public class RBTreeNode<T extends Comparable<T>> {
     private RBTreeNode<T> parent;//parent pointer
     private boolean red;//color is red or not red
 
-    public RBTreeNode(T value){this.value=value;}
+    public RBTreeNode(T value) {
+        this.value = value;
+    }
 
     public T getValue() {
         return value;
     }
+
     void setValue(T value) {
         this.value = value;
     }
+
     RBTreeNode<T> getLeft() {
         return left;
     }
+
     void setLeft(RBTreeNode<T> left) {
         this.left = left;
     }
+
     RBTreeNode<T> getRight() {
         return right;
     }
+
     void setRight(RBTreeNode<T> right) {
         this.right = right;
     }
+
     RBTreeNode<T> getParent() {
         return parent;
     }
+
     void setParent(RBTreeNode<T> parent) {
         this.parent = parent;
     }
+
     boolean isRed() {
         return red;
     }
-    boolean isBlack(){
+
+    boolean isBlack() {
         return !red;
     }
+
     /**
      * is leaf node
      **/
-    boolean isLeaf(){
-        return left==null && right==null;
+    boolean isLeaf() {
+        return left == null && right == null;
     }
 
     void setRed(boolean red) {
         this.red = red;
     }
 
-    void makeRed(){
-        red=true;
+    void makeRed() {
+        red = true;
     }
-    void makeBlack(){
-        red=false;
+
+    void makeBlack() {
+        red = false;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return value.toString();
     }
 }

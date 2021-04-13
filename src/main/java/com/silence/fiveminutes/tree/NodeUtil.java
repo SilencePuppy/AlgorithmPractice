@@ -17,7 +17,6 @@ public class NodeUtil {
 
     /**
      * 随机创建一棵二叉树，通过 @param{maxLayer} 控制数的层数
-     *
      * @param maxLayer 目标树的层数
      * @return 树根节点
      */
@@ -35,7 +34,6 @@ public class NodeUtil {
      * 创建子树，根据生成的随机数判断当前子树左右子节点是否需要存在，
      * 然后在递归生成左子树或者右子树，最后创建自己的节点数据并返回。
      * 递归出口，当前节点所在的层数超过了可用的最大层数。
-     *
      * @param curLayer 当前子树根节点所在的层数
      * @param maxLayer 树的最大层数
      * @param random   树节点数据随机生成器
@@ -66,7 +64,6 @@ public class NodeUtil {
     /**
      * 打印树结构，假设第n层每个节点需要w位占位，则任何相邻的两个兄弟节点其中间就会有2w-2(取的数值都是两位的)个空位
      * 如果想让第n-1层第节点在下面一层的两个点中间，则其必须从w-2处开始（2w-2-2）/2,所以每次n-1层的占位都是第n层的2倍
-     *
      * @param root     根节点
      * @param maxLayer 树层数，根据该值计算每层需要使用的空格数
      */
@@ -117,7 +114,6 @@ public class NodeUtil {
 
     /**
      * 计算某一个节点所在的层数
-     *
      * @param node 节点
      * @return 层数 null 为0层
      */
@@ -133,7 +129,6 @@ public class NodeUtil {
 
     /**
      * 通过迭代计算树的层数
-     *
      * @param root 树根
      * @return 树的层数
      */
@@ -176,7 +171,6 @@ public class NodeUtil {
 
     /**
      * 先序遍历
-     *
      * @param node
      * @return
      */
@@ -191,7 +185,6 @@ public class NodeUtil {
 
     /**
      * 通过记录节点访问状态的形式来进行先序遍历
-     *
      * @param root
      */
     public static void beforeIterator1(Node<Integer> root) {
@@ -222,7 +215,6 @@ public class NodeUtil {
 
     /**
      * 通过栈直接模拟函数递归
-     *
      * @param root
      */
     public static void beforeIterator2(Node<Integer> root) {
@@ -242,7 +234,6 @@ public class NodeUtil {
 
     /**
      * 中序遍历递归
-     *
      * @param node
      */
     public static void middleRecursive(Node<Integer> node) {
@@ -283,7 +274,6 @@ public class NodeUtil {
 
     /**
      * 栈迭代 中序遍历
-     *
      * @param root
      */
     public static void middleIterator2(Node<Integer> root) {
@@ -304,7 +294,6 @@ public class NodeUtil {
 
     /**
      * 后序遍历递归
-     *
      * @param node
      */
     public static void afterRecursive(Node<Integer> node) {
@@ -318,7 +307,6 @@ public class NodeUtil {
 
     /**
      * 状态迭代 后序
-     *
      * @param root
      */
     public static void afterIterator1(Node<Integer> root) {
@@ -349,7 +337,6 @@ public class NodeUtil {
 
     /**
      * 双栈记录顺序法
-     *
      * @param root
      */
     public static void afterIterator2(Node<Integer> root) {

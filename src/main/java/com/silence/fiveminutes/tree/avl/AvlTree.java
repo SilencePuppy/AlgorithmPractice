@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * AVL树
- *
  * @author 李晓冰
  * @date 2020年04月01日
  */
@@ -137,7 +136,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * 获取最小不平衡子树
-     *
      * @param node 开始查询节点
      * @return 最小不平衡子树
      */
@@ -155,7 +153,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * 调整最小不平衡子树
-     *
      * @param node 最小不平衡子树根节点
      */
     private void adjustUnbalancedTree(Node<T> node) {
@@ -168,7 +165,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * recalculate the height of the nodes from node and it's parents until ceilNode
-     *
      * @param node     begin node
      * @param ceilNode ceil limit(exclusive)
      */
@@ -184,7 +180,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * 获得平衡因子
-     *
      * @param node 目标节点
      * @return if node is null then return 0
      * otherwise return left child height - right child height
@@ -198,7 +193,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * 获取节点高度
-     *
      * @param node 目标节点
      * @return if node is null then return 0 otherwise node.getHeight();
      */
@@ -211,7 +205,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * node is not balanced and it's left child is higher than right child
-     *
      * @param node the minimum unBalanced tree
      */
     private void leftChildHigher(Node<T> node) {
@@ -228,7 +221,6 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * node is not balanced and it's right child is higher than left child
-     *
      * @param node the minimum unBalanced tree
      */
     private void rightChildHigher(Node<T> node) {

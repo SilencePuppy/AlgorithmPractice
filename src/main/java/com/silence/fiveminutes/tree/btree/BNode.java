@@ -107,7 +107,7 @@ public class BNode<K extends Comparable<K>, V> {
         if (nKey - index - 1 > 0) {
             System.arraycopy(keys, index + 1, keys, index, nKey - index - 1);
         }
-        keys[nKey-1] = null;
+        keys[nKey - 1] = null;
         nKey--;
         return ret;
     }
@@ -286,7 +286,7 @@ public class BNode<K extends Comparable<K>, V> {
         // 先删除孩子链接
         parent.removeChildByIndex(inParentIndex + 1);
         parent.removeKVNode(inParentIndex);
-        insertKVNode(getNKey(),parentKVNode);
+        insertKVNode(getNKey(), parentKVNode);
 
         if (isLeaf) {
             for (int i = 0; i < succeSibling.getNKey(); i++) {

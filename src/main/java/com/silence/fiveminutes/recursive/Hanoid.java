@@ -15,9 +15,9 @@ public class Hanoid {
             System.out.println(from + "->" + to);
             return;
         }
-        hanoidRecursive(n-1,from,swap,to);
+        hanoidRecursive(n - 1, from, swap, to);
         hanoidRecursive(1, from, to, swap);
-        hanoidRecursive(n-1,swap,to,from);
+        hanoidRecursive(n - 1, swap, to, from);
     }
 
     class Node {
@@ -57,12 +57,11 @@ public class Hanoid {
     }
 
 
-
     public static void main(String[] args) {
         Hanoid hanoid = new Hanoid();
 //        hanoid.hanoidRecursive(3,'a','b','c');
         System.out.println("-----------");
-        hanoid.hanoidIterate(3,'a','b','c');
+        hanoid.hanoidIterate(3, 'a', 'b', 'c');
     }
 
 }

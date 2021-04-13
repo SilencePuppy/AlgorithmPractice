@@ -20,7 +20,6 @@ import java.util.Map;
  * 找边界条件：
  * f(n,w) = 0 当n==0或者n==1当时p>w 没有矿，或者只有一个矿但是人手不够
  * f(n,w) = v 当n==1&&p<=w 只有一个矿且人手够
- *
  * @author 李晓冰
  * @date 2020年02月25日
  */
@@ -45,7 +44,6 @@ public class DigGod {
 
     /**
      * 求解当拥有goldNum个矿和personNum个人时 能够挖的总价值
-     *
      * @param goldNum   矿的数量同时也表示当前打算开挖的一个矿
      * @param personNum 当前人的数量
      * @return 总价值
@@ -106,7 +104,7 @@ public class DigGod {
 /**
  * 迭代的方式实现
  */
-class DigGoldByIterator{
+class DigGoldByIterator {
     /**
      * 每一个金矿的价值,下标从1开始
      */
@@ -130,9 +128,9 @@ class DigGoldByIterator{
         goldMemo = new int[this.gold.length][totalPerson + 1];
     }
 
-    public int find(){
+    public int find() {
         for (int i = 1; i < this.gold.length; i++) {
-            for (int j = 1; j <=this.totalPerson; j++) {
+            for (int j = 1; j <= this.totalPerson; j++) {
                 // 人不够
                 if (j < person[i]) {
                     goldMemo[i][j] = goldMemo[i - 1][j];
@@ -143,6 +141,6 @@ class DigGoldByIterator{
                 }
             }
         }
-        return goldMemo[this.gold.length-1][this.totalPerson];
+        return goldMemo[this.gold.length - 1][this.totalPerson];
     }
 }

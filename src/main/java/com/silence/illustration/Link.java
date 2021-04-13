@@ -7,7 +7,6 @@ package com.silence.illustration;
  * 3.两个有序链表合并
  * 4.删除链表中第n个节点
  * 5.求链表中间节点
- *
  * @author 李晓冰
  * @date 2020年02月16日
  */
@@ -57,8 +56,8 @@ public class Link<T extends Comparable<T>> {
         return newLink;
     }
 
-    public T findMiddle(){
-        Node<T> p1 = head.next,p2 = head.next;
+    public T findMiddle() {
+        Node<T> p1 = head.next, p2 = head.next;
         int step = 0;
         while (p2 != null) {
             step = 0;
@@ -80,8 +79,8 @@ public class Link<T extends Comparable<T>> {
     }
 
     public T deleteNode(int index) {
-        Node<T> prev = head,p = head;
-        int i=-1;
+        Node<T> prev = head, p = head;
+        int i = -1;
         while (i != index && p != null) {
             i++;
             prev = p;
@@ -92,7 +91,7 @@ public class Link<T extends Comparable<T>> {
         }
 
         prev.next = p.next;
-        p.next=null;
+        p.next = null;
         return p.data;
     }
 
